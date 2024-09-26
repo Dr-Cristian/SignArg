@@ -57,7 +57,7 @@
         <button id="startbutton">Take photo</button>
     </div>
     <canvas id="canvas"> </canvas>
-    <form id="image-form" method="POST" action="<?= base_url('123') ?>">
+    <form id="image-form" action="<?= base_url('123');?>" method="POST" >
         <input type="hidden" id="image-data" name="image-data" />
         <div class="output">
             <img id="photo" name="photo" alt="The screen capture will appear in this box." />
@@ -125,24 +125,18 @@
         }, false);
         clearphoto();
     }
-    function saveImage(data) {
-    const formData = new FormData();
-    formData.append('image', data);
-    fetch('saveImage', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => {
-        if (response.ok) {
-            console.log('Image saved successfully');
-        } else {
-            console.error('Failed to save image');
-        }
-    })
-    .catch(error => {
-        console.error('Error saving image:', error);
-    });
-    }
+    // function saveImage(data) {
+    // const form = document.querySelector("#image-form");
+    // form.addEventListener("submit", async (event) => {
+    // const formData = new FormData(form);
+    // formData.append('image-data', data);
+    // fetch('saveImage', {
+    //     method: 'POST',
+    //     body: formData,
+    // });
+    // event.preventDefault();
+    // });
+    // }
     function clearphoto() {
         const context = canvas.getContext("2d");
         context.fillStyle = "#AAA";
@@ -166,7 +160,7 @@
         }
     }
     window.addEventListener("load", startup, false);
-})();
+});
 </script>
 </body>
 </html>
